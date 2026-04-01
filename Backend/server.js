@@ -5,16 +5,17 @@ const bodyParser = require('body-parser');
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
   credentials: true
 }));
 app.use(bodyParser.json());
 
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "rideservice"
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT || 3306
 });
 
 db.connect((err) => {
@@ -272,8 +273,8 @@ app.post('/complete-ride/:bookingId', (req, res) => {
     // ✅ INSERT IGNORE: skips silently if record already exists (stuck bookings)
     const insertSql = `
       INSERT IGNORE INTO transactions 
-      (BookingId, CustomerName, CustomerEmail, PickupLocation, PickupTime, Destination, Date, DriverId, Status) 
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'Completed')`;
+      (BookingId, CustomerName, CustomerEmail, PickupLocation, PickupTime, Destination, Date, DriverId, Status, CompletedAt) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'Completed', NOW())`;
 
     db.query(insertSql, [
       booking.Bookingid, booking.Name, booking.Email,

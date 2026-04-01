@@ -14,7 +14,6 @@ function TransactionsPage() {
                 alert("Error loading transaction history. Please try again.");
             }
         };
-        
         fetchTransactions();
     }, []);
     
@@ -31,6 +30,7 @@ function TransactionsPage() {
                             <th className="px-4 py-2 text-left">Destination</th>
                             <th className="px-4 py-2 text-left">Date</th>
                             <th className="px-4 py-2 text-left">Status</th>
+                            <th className="px-4 py-2 text-left">Completed At</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,6 +49,11 @@ function TransactionsPage() {
                                     <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full">
                                         {transaction.Status}
                                     </span>
+                                </td>
+                                <td className="px-4 py-2">
+                                    {transaction.CompletedAt 
+                                        ? new Date(transaction.CompletedAt).toLocaleString() 
+                                        : '—'}
                                 </td>
                             </tr>
                         ))}
