@@ -2,6 +2,7 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const PORT = process.env.PORT || 8081;
 
 const app = express();
 app.use(cors({
@@ -300,6 +301,6 @@ app.post('/complete-ride/:bookingId', (req, res) => {
   });
 });
 
-app.listen(8081, () => {
-  console.log("Server listening on port 8081");
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });
