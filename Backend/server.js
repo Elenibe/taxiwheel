@@ -16,7 +16,7 @@ const db = mysql.createConnection({
   user: process.env.USER,
   password: process.env.PASSWORD,
   database: process.env.DATABASE_NAME,
-  port: process.env.PORT || 3306
+  port: process.env.DB_PORT
 });
 
 db.connect((err) => {
@@ -300,6 +300,7 @@ app.post('/complete-ride/:bookingId', (req, res) => {
     });
   });
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
