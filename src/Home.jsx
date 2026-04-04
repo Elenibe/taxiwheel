@@ -42,7 +42,7 @@ function HomePage({ onNavigate }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8081/bookings', booking);
+      await axios.post('https://taxiwheel-backend.onrender.com/bookings', booking);
       setShowSuccessModal(true); 
       setBooking({
         Name: '',

@@ -7,7 +7,7 @@ function TransactionsPage() {
     useEffect(() => {
         const fetchTransactions = async () => {
             try {
-                const response = await axios.get('http://localhost:8081/transactions');
+                const response = await axios.get('https://taxiwheel-backend.onrender.com/transactions');
                 setTransactions(response.data);
             } catch (error) {
                 console.error("Error fetching transactions:", error);

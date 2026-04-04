@@ -22,7 +22,7 @@ function DriversPage() {
     }, []);
 
     const fetchDrivers = () => {
-        fetch('http://localhost:8081/drivers')
+        fetch('https://taxiwheel-backend.onrender.com/drivers')
             .then(res => res.json())
             .then(data => setData(data))
             .catch(err => console.log(err));
@@ -37,7 +37,7 @@ function DriversPage() {
     };
 
     const handleAddDriver = () => {
-        fetch('http://localhost:8081/add-driver', {
+        fetch('https://taxiwheel-backend.onrender.com/add-driver', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ function DriversPage() {
     };
 
     const handleEditDriver = () => {
-        fetch(`http://localhost:8081/drivers/${selectedDriver.Driverid}`, {
+        fetch(`https://taxiwheel-backend.onrender.com/drivers/${selectedDriver.Driverid}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ function DriversPage() {
 
     const handleDeleteDriver = (driverId) => {
         if(window.confirm('Are you sure you want to delete this driver?')) {
-            fetch(`http://localhost:8081/drivers/${driverId}`, {
+            fetch(`https://taxiwheel-backend.onrender.com/drivers/${driverId}`, {
                 method: 'DELETE'
             })
             .then(res => res.json())
