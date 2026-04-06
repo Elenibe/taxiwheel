@@ -92,7 +92,7 @@ function AdminsPage() {
     return (
         <div>
             {showModal && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center" style={{zIndex: 50}}>
                     <div className="bg-white p-8 rounded-lg w-96">
                         <h2 className="text-2xl font-bold mb-4">{modalMode === 'add' ? 'Add New Admin' : 'Edit Admin'}</h2>
                         <div className="space-y-4">
