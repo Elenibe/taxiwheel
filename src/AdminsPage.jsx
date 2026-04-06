@@ -22,15 +22,15 @@ function AdminsPage() {
     };
 
     // ✅ Filter by name, email, or phone
-    const filtered = data.filter(admin => {
-        const q = search.toLowerCase();
-        return (
-            (admin.Firstname && admin.Firstname.toLowerCase().includes(q)) ||
-            (admin.Lastname && admin.Lastname.toLowerCase().includes(q)) ||
-            (admin.Email && admin.Email.toLowerCase().includes(q)) ||
-            (admin.PhoneNo && admin.PhoneNo.toLowerCase().includes(q))
-        );
-    });
+const filtered = data.filter(admin => {
+    const q = search.toLowerCase();
+    return (
+        (admin.Firstname && admin.Firstname.toLowerCase().includes(q)) ||
+        (admin.Lastname && admin.Lastname.toLowerCase().includes(q)) ||
+        (admin.Email && admin.Email.toLowerCase().includes(q)) ||
+        (admin.PhoneNo && String(admin.PhoneNo).toLowerCase().includes(q))
+    );
+});
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
