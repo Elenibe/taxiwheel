@@ -20,7 +20,7 @@ function AdminsPage() {
     }, []);
 
     const fetchAdmins = () => {
-        fetch('http://localhost:8081/admins')
+        fetch('https://taxiwheel-backend.onrender.com/admins')
             .then(res => res.json())
             .then(data => setData(data))
             .catch(err => console.log(err));
@@ -35,7 +35,7 @@ function AdminsPage() {
     };
 
     const handleAddAdmin = () => {
-        fetch('http://localhost:8081/add-admin', {
+        fetch('https://taxiwheel-backend.onrender.com/add-admin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ function AdminsPage() {
     };
 
     const handleEditAdmin = () => {
-        fetch(`http://localhost:8081/admins/${selectedAdmin.Adminid}`, {
+        fetch(`https://taxiwheel-backend.onrender.com/admins/${selectedAdmin.Adminid}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ function AdminsPage() {
 
     const handleDeleteAdmin = (adminId) => {
         if(window.confirm('Are you sure you want to delete this admin?')) {
-            fetch(`http://localhost:8081/admins/${adminId}`, {
+            fetch(`https://taxiwheel-backend.onrender.com/admins/${adminId}`, {
                 method: 'DELETE'
             })
             .then(res => res.json())

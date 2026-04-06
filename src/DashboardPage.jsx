@@ -10,7 +10,7 @@ function DashboardPage() {
   // ✅ FIX: fetchBookings is now a standalone function visible to all handlers
   const fetchBookings = async () => {
     try {
-      const response = await axios.get("http://localhost:8081/bookings");
+      const response = await axios.get("https://taxiwheel-backend.onrender.com/bookings");
       setBookings(response.data);
     } catch (error) {
       console.error("Error fetching bookings:", error);
@@ -24,7 +24,7 @@ function DashboardPage() {
 
   const fetchAvailableDrivers = async () => {
     try {
-      const response = await axios.get("http://localhost:8081/drivers/available");
+      const response = await axios.get("https://taxiwheel-backend.onrender.com/drivers/available");
       setAvailableDrivers(response.data);
     } catch (error) {
       console.error("Error fetching available drivers:", error);
@@ -42,12 +42,12 @@ function DashboardPage() {
     try {
       // Assign driver to booking
       await axios.post(
-        `http://localhost:8081/bookings/${selectedBooking.Bookingid}/assign`,
+        `https://taxiwheel-backend.onrender.com/bookings/${selectedBooking.Bookingid}/assign`,
         { driverId }
       );
 
       // ✅ FIX: Use separate PATCH endpoint for status update (no longer corrupts driver data)
-      await axios.patch(`http://localhost:8081/drivers/${driverId}/status`, {
+      await axios.patch(`https://taxiwheel-backend.onrender.com/drivers/${driverId}/status`, {
         Status: "Unavailable",
       });
 
@@ -65,7 +65,7 @@ function DashboardPage() {
 
   const handleCompleteRide = async (bookingId) => {
     try {
-      await axios.post(`http://localhost:8081/complete-ride/${bookingId}`);
+      await axios.post(`https://taxiwheel-backend.onrender.com/complete-ride/${bookingId}`);
       await fetchBookings();
       alert("Ride completed successfully!");
     } catch (error) {
